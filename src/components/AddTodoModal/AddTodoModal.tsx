@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Todo } from "../../features/todos/types";
 import { useAppDispatch } from "../../app/hooks";
 import { addTodo, updateTodo } from "../../features/todos/todosSlice";
@@ -11,6 +11,7 @@ interface Props {
 
 const AddTodoModal = ({ onClose, todo }: Props) => {
     const dispatch = useAppDispatch();
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const [title, setTitle] = useState<string>(todo?.title ?? "");
     const [description, setDescription] = useState<string>(
@@ -19,35 +20,44 @@ const AddTodoModal = ({ onClose, todo }: Props) => {
     const [urgency, setUrgency] = useState<number>(todo?.urgency ?? 2);
     const [priority, setPriority] = useState<number>(todo?.priority ?? 3);
 
-    const submit = () => {
-        if (todo) {
-            dispatch(
-                updateTodo({
-                    ...todo,
-                    title,
-                    description,
-                    priority: priority as any,
-                    urgency: urgency as any,
-                }),
-            );
-        } else {
-            dispatch(
-                addTodo({
-                    title,
-                    description,
-                    priority: priority as any,
-                    urgency: urgency as any,
-                    completed: false,
-                }),
-            );
-        }
+    const submit = (event: React.SubmitEvent) => {
+        event.preventDefault();
+        if (title) {
+            if (todo) {
+                dispatch(
+                    updateTodo({
+                        ...todo,
+                        title,
+                        description,
+                        priority: priority as any,
+                        urgency: urgency as any,
+                    }),
+                );
+            } else {
+                dispatch(
+                    addTodo({
+                        title,
+                        description,
+                        priority: priority as any,
+                        urgency: urgency as any,
+                        completed: false,
+                    }),
+                );
+            }
 
-        onClose();
+            onClose();
+        }
     };
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
 
     return (
         <div className={styles.overlay}>
-            <div className={styles.modal}>
+            <form className={styles.modal} onSubmit={submit}>
                 <h2 className={styles.title}>
                     {todo ? "Edit Todo" : "Add Todo"}
                 </h2>
@@ -57,6 +67,7 @@ const AddTodoModal = ({ onClose, todo }: Props) => {
                     placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    ref={inputRef}
                 />
 
                 <textarea
@@ -89,18 +100,19 @@ const AddTodoModal = ({ onClose, todo }: Props) => {
                 </select>
 
                 <div className={styles.buttons}>
-                    <button className={styles.button} onClick={submit}>
+                    <button type="submit" className={styles.button}>
                         {todo ? "Save" : "Add"}
                     </button>
 
                     <button
+                        type="button"
                         className={`${styles.button} ${styles.cancel}`}
                         onClick={onClose}
                     >
                         Cancel
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
