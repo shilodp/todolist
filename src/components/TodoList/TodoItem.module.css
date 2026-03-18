@@ -1,0 +1,125 @@
+.item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    padding: 16px;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    transition: all 0.2s;
+}
+
+.item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.description {
+    color: #666;
+}
+
+.urgency {
+    font-size: 12px;
+
+    background: #ffdddd;
+
+    padding: 2px 6px;
+
+    border-radius: 4px;
+}
+
+.urgencyHigh {
+    background: #db0b8b;
+}
+
+.urgencyMedium {
+    background: #ee6930;
+}
+
+.urgencyLow {
+    background: #81c92a;
+}
+
+.priority {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.checkbox {
+    margin-top: 6px;
+}
+
+.actions {
+    display: flex;
+
+    gap: 6px;
+
+    margin-left: auto;
+}
+
+.edit {
+    border: none;
+
+    background: #2196f3;
+
+    color: white;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.delete {
+    border: none;
+
+    background: #e53935;
+
+    color: white;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.shortRow .label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.shortRow .title {
+    flex: 1;
+}
+
+.shortRow .urgency,
+.shortRow .priority {
+    font-size: 12px;
+
+
+    padding: 2px 6px;
+
+    border-radius: 4px;
+}
+
+.shortRow .priority {
+    background: #eee;
+}

@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.select {
+    padding: 6px 10px;
+
+    border-radius: 6px;
+    border: 1px solid #ccc;
+
+    font-size: 14px;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 14px;
+}
