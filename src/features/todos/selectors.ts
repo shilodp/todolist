@@ -4,6 +4,14 @@ export const selectTodos = (state: RootState) => state.todos;
 
 export const selectViewMode = (state: RootState) => state.viewMode;
 
+export const selectFiltersValues = (state: RootState) => {
+    return {
+        filterPriority: state.filterPriority,
+        filterUrgency: state.filterUrgency,
+        hideCompleted: state.hideCompleted,
+    };
+};
+
 export const selectFilteredTodos = (state: RootState) => {
     let todos = [...state.todos];
 

@@ -5,12 +5,17 @@ import {
     toggleHideCompleted,
     setViewMode,
 } from "../../features/todos/todosSlice";
-import { selectViewMode } from "../../features/todos/selectors";
+import {
+    selectViewMode,
+    selectFiltersValues,
+} from "../../features/todos/selectors";
 import styles from "./Filters.module.css";
 
 const Filters = () => {
     const dispatch = useAppDispatch();
     const viewMode = useAppSelector(selectViewMode);
+    const { filterPriority, filterUrgency, hideCompleted } =
+        useAppSelector(selectFiltersValues);
 
     return (
         <div className={styles.wrapper}>
@@ -25,6 +30,7 @@ const Filters = () => {
                         ),
                     )
                 }
+                value={filterUrgency ? filterUrgency : ""}
             >
                 <option value="">All urgency</option>
 
@@ -44,6 +50,7 @@ const Filters = () => {
                         ),
                     )
                 }
+                value={filterPriority ? filterPriority : ""}
             >
                 <option value="">All priorities</option>
 
@@ -58,6 +65,7 @@ const Filters = () => {
                 <input
                     type="checkbox"
                     onChange={() => dispatch(toggleHideCompleted())}
+                    checked={hideCompleted}
                 />
                 Hide completed
             </label>
