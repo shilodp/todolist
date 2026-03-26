@@ -53,37 +53,78 @@ const TodoItem = ({ todo, viewMode, onEdit }: Props) => {
             </label>
         </div>
     );
-
     const fullView = (
         <>
-            <h3 className={styles.title}>{todo.title}</h3>
+            <div className={styles.header}>
+                <h3 className={styles.title}>{todo.title}</h3>
+
+                <div className={styles.actions}>
+                    <button
+                        onClick={() => onEdit(todo)}
+                        className={styles.edit}
+                    >
+                        Edit
+                    </button>
+
+                    <button onClick={handleDelete} className={styles.delete}>
+                        Delete
+                    </button>
+                </div>
+            </div>
 
             <p className={styles.description}>{todo.description}</p>
-            <p className={`${styles.urgency} ${urgencyClass}`}>
-                Urgency: {todo.urgency}
-            </p>
-            <p className={styles.priority}>Priority: {todo.priority}</p>
 
-            <label className={styles.checkbox}>
-                <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    onChange={() => dispatch(toggleTodo(todo.id))}
-                />
-                Completed
-            </label>
+            <div className={styles.meta}>
+                <span className={`${styles.badge} ${urgencyClass}`}>
+                    U{todo.urgency}
+                </span>
+                <span className={`${styles.badge} ${styles.priority}`}>
+                    P{todo.priority}
+                </span>
+            </div>
 
-            <div className={styles.actions}>
-                <button onClick={() => onEdit(todo)} className={styles.edit}>
-                    Edit
-                </button>
-
-                <button onClick={handleDelete} className={styles.delete}>
-                    Delete
-                </button>
+            <div className={styles.footer}>
+                <label className={styles.checkbox}>
+                    <input
+                        type="checkbox"
+                        checked={todo.completed}
+                        onChange={() => dispatch(toggleTodo(todo.id))}
+                    />
+                    Completed
+                </label>
             </div>
         </>
     );
+    // const fullView = (
+    //     <>
+    //         <h3 className={styles.title}>{todo.title}</h3>
+
+    //         <p className={styles.description}>{todo.description}</p>
+    //         <p className={`${styles.urgency} ${urgencyClass}`}>
+    //             Urgency: {todo.urgency}
+    //         </p>
+    //         <p className={styles.priority}>Priority: {todo.priority}</p>
+
+    //         <label className={styles.checkbox}>
+    //             <input
+    //                 type="checkbox"
+    //                 checked={todo.completed}
+    //                 onChange={() => dispatch(toggleTodo(todo.id))}
+    //             />
+    //             Completed
+    //         </label>
+
+    //         <div className={styles.actions}>
+    //             <button onClick={() => onEdit(todo)} className={styles.edit}>
+    //                 Edit
+    //             </button>
+
+    //             <button onClick={handleDelete} className={styles.delete}>
+    //                 Delete
+    //             </button>
+    //         </div>
+    //     </>
+    // );
 
     return (
         <div

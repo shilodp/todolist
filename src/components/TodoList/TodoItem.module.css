@@ -4,7 +4,7 @@
 
     padding: 16px;
 
-    background: white;
+    background: #ffffff;
 
     display: flex;
     flex-direction: column;
@@ -22,23 +22,41 @@
     text-decoration: line-through;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
 .title {
     font-size: 18px;
     font-weight: 600;
 }
 
 .description {
-    color: #666;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
 }
 
-.urgency {
+.meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge {
     font-size: 12px;
+    padding: 4px 8px;
 
-    background: #ffdddd;
+    border-radius: 6px;
 
-    padding: 2px 6px;
-
-    border-radius: 4px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .urgencyHigh {
@@ -54,20 +72,28 @@
 }
 
 .priority {
-    font-size: 14px;
-    font-weight: 500;
+    background: #e0e7ff;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 6px;
 }
 
 .checkbox {
-    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 14px;
 }
 
 .actions {
     display: flex;
-
-    gap: 6px;
-
-    margin-left: auto;
+    gap: 8px;
 }
 
 .edit {
@@ -77,9 +103,8 @@
 
     color: white;
 
-    padding: 4px 8px;
-
-    border-radius: 4px;
+    padding: 6px 10px;
+    border-radius: 6px;
 
     cursor: pointer;
 }
@@ -91,35 +116,32 @@
 
     color: white;
 
-    padding: 4px 8px;
-
-    border-radius: 4px;
+    padding: 6px 10px;
+    border-radius: 6px;
 
     cursor: pointer;
 }
 
-.shortRow .label {
-    display: flex;
+.shortRow {
+    .label {
+        display: flex;
 
-    align-items: center;
+        align-items: center;
 
-    gap: 10px;
-}
+        gap: 10px;
+    }
 
-.shortRow .title {
-    flex: 1;
-}
+    .title {
+        flex: 1;
+    }
 
-.shortRow .urgency,
-.shortRow .priority {
-    font-size: 12px;
+    .urgency,
+    .priority {
+        font-size: 12px;
 
 
-    padding: 2px 6px;
+        padding: 2px 6px;
 
-    border-radius: 4px;
-}
-
-.shortRow .priority {
-    background: #eee;
+        border-radius: 4px;
+    }
 }
